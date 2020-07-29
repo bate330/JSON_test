@@ -1,0 +1,174 @@
+unit f_Main;
+
+interface
+
+uses
+  c_Saver, System.JSON, System.JSON.Types, System.JSON.Readers, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DBXJSON, System.IOUtils, uCustomTypes;
+
+type
+  TMainForm = class(TForm)
+    Saver: TSaver;
+    Reader: TReader;
+    Button1: TButton;
+    Memo1: TMemo;
+    Button2: TButton;
+    Button3: TButton;
+    Memo2: TMemo;
+    Memo3: TMemo;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    function GetJsonText: string;
+    procedure DisplayStocks(stocks: TStocks; Stock: TStock);
+    procedure Log(s: string);
+    function ProcessStockRead(stocks: TStocks; jtr: TJsonTextReader): TStock;
+    procedure FormCreate(Sender: TObject);
+    end;
+
+
+    TFoo = class
+      private
+        FFee: Integer;
+        FFoo: string;
+        FFruit: string;
+
+      public
+        property Foo : string read FFoo write FFoo;
+        property Fee : Integer read FFee write FFee;
+        property fruit: string read FFruit write FFruit;
+      end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+uses JSON.Writers, JSON.Builders, REST.JSON, JsonUtils;
+
+{$R *.dfm}
+
+//==============================================================================
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  Saver := TSaver.Create;
+  Reader := TReader.Create;
+end;
+
+//==============================================================================
+procedure TMainForm.Button1Click(Sender: TObject);
+var
+Stock: TStock;
+begin
+   Stock:= TStock.Create;
+   Stock.fruit := Memo3.Lines[0];
+   Stock.size := Memo3.Lines[1];
+   Stock.color := Memo3.Lines[2];
+   Saver.Save(Stock);
+end;
+
+//==============================================================================
+procedure TMainForm.Button2Click(Sender: TObject);
+begin
+  Memo1.Lines.Text := Reader.Read;
+end;
+
+//==============================================================================
+function TMainForm.ProcessStockRead(stocks: TStocks; jtr: TJsonTextReader): TStock;
+var stock: TStock;
+begin
+  stock := TStock.Create;
+
+  while jtr.Read do
+  begin
+    if jtr.TokenType = TJsonToken.PropertyName then
+    begin
+      if jtr.Value.ToString = 'fruit' then
+      begin
+        jtr.Read;
+        stock.fruit := jtr.Value.AsString;
+      end
+
+      else if jtr.Value.ToString = 'size' then
+      begin
+        jtr.Read;
+        stock.size := jtr.Value.AsString;
+      end
+
+      else if jtr.Value.ToString = 'color' then
+      begin
+        jtr.Read;
+        stock.color := jtr.Value.AsString;
+      end
+    end
+
+    else if jtr.TokenType = TJsonToken.EndObject then
+    begin
+      stocks.add(stock);
+    end;
+  end;
+  Result := stock;
+end;
+
+//==============================================================================
+function TMainForm.GetJsonText: string;
+var s: string;
+begin
+  for s in Memo1.Lines do
+    Result := Result + s;
+end;
+
+//==============================================================================
+procedure TMainForm.Log(s: string);
+begin
+  Memo2.Lines.Add(s);
+end;
+
+//==============================================================================
+procedure TMainForm.DisplayStocks(stocks: TStocks; Stock: TStock);
+var i: integer;
+begin
+  Memo2.Lines.Clear;
+
+  Log(DateTimeToStr(Now));
+  if stocks <> nil then
+  begin
+    Log('Stocks count = ' + stocks.Count.ToString);
+    Log('==================');
+
+    for i := 0 to stocks.Count-1 do
+    begin
+      Log('Fruit: ' + stock.fruit);
+      Log('Size: ' + stock.size);
+      Log('Color: ' + stock.color);
+      Log('==================');
+    end;
+  end
+  else
+    Log('No stocks found.');
+end;
+
+//==============================================================================
+procedure TMainForm.Button3Click(Sender: TObject);
+var jtr: TJsonTextReader; sr: TStringReader; stocks: TStocks; Stock: TStock;
+begin
+  stocks := TStocks.Create;
+  try
+    sr := TStringReader.Create(GetJsonText);
+    try
+      jtr := TJsonTextReader.Create(sr);
+      try
+        Stock := ProcessStockRead(stocks, jtr);
+      finally
+        jtr.Free;
+      end;
+    finally
+      sr.Free;
+    end;
+    DisplayStocks(stocks, Stock);
+  finally
+    stocks.Free;
+  end;
+end;
+
+end.

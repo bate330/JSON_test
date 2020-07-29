@@ -1,0 +1,167 @@
+unit JSON;
+
+interface
+
+uses
+  System.JSON, System.JSON.Types, System.JSON.Readers, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DBXJSON, System.IOUtils, uCustomTypes;
+
+type
+  TForm2 = class(TForm)
+    Button1: TButton;
+    Memo1: TMemo;
+    Button2: TButton;
+    Button3: TButton;
+    Memo2: TMemo;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    function GetJsonText: string;
+    procedure DisplayStocks(stocks: TStocks);
+    procedure Log(s: string);
+    procedure ProcessStockRead(stocks: TStocks; jtr: TJsonTextReader);
+    end;
+    TFoo = class
+  private
+    FFee: Integer;
+    FFoo: string;
+    FFruit: string;
+
+  public
+    property Foo : string read FFoo write FFoo;
+    property Fee : Integer read FFee write FFee;
+    property fruit: string read FFruit write FFruit;
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses JSON.Writers, JSON.Builders, REST.JSON, JsonUtils;
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+var
+Foo: TFoo;
+JSonFile: TStringlist;
+begin
+   Foo:= TFoo.Create;
+   JSonFile:= TStringlist.Create;
+try
+  Foo.Foo := 'haha';
+  Foo.Fee := 15;
+  JsonFile.Add(TJson.ObjectToJsonString(Foo));
+  JSonFile.SaveToFile('d:\jsonfiletest.json');
+finally
+  Foo.Free;
+end;
+
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+var
+Foo: TFoo;
+JSonRead: TStringList;
+begin
+  JSonRead := TStringList.Create;
+  JSonRead.LoadFromFile('D:\Pobrane\example_1.json');
+  Memo1.Lines.Text := JSonRead.Text;
+end;
+
+procedure TForm2.ProcessStockRead(stocks: TStocks; jtr: TJsonTextReader);
+var stock: TStock;
+begin
+  stock := TStock.Create;
+
+  while jtr.Read do
+  begin
+    if jtr.TokenType = TJsonToken.PropertyName then
+    begin
+      if jtr.Value.ToString = 'size' then
+      begin
+        jtr.Read;
+        stock.Symbol := jtr.Value.AsString;
+      end
+
+      else if jtr.Value.ToString = 'color' then
+      begin
+        jtr.Read;
+        stock.price := jtr.Value.AsExtended;
+      end
+    end
+
+    else if jtr.TokenType = TJsonToken.EndObject then
+    begin
+      stocks.add(stock);
+      exit;
+    end;
+  end;
+end;
+
+function TForm2.GetJsonText: string;
+var s: string;
+begin
+  for s in Memo1.Lines do
+    Result := Result + s;
+end;
+
+procedure TForm2.Log(s: string);
+begin
+  Memo2.Lines.Add(s);
+end;
+
+procedure TForm2.DisplayStocks(stocks: TStocks);
+var stock: TStock; i: integer;
+begin
+  Memo2.Lines.Clear;
+
+  Log(DateTimeToStr(Now));
+
+  if stocks <> nil then
+  begin
+    Log('Stocks count = ' + stocks.Count.ToString);
+    Log('==================');
+
+    for i := 0 to stocks.Count-1 do
+    begin
+      stock := stocks[i];
+      Log('Stock Nr: ' + i.ToString);
+      Log('Symbol: ' + stock.Symbol);
+      Log('Price: ' + stock.price.ToString);
+      Log('==================');
+    end;
+  end
+  else
+    Log('No stocks found.');
+end;
+
+procedure TForm2.Button3Click(Sender: TObject);
+var jtr: TJsonTextReader; sr: TStringReader; stocks: TStocks;
+begin
+  stocks := TStocks.Create;
+  try
+    sr := TStringReader.Create(GetJsonText);
+    try
+      jtr := TJsonTextReader.Create(sr);
+      try
+        while jtr.Read do
+        begin
+          if jtr.TokenType = TJsonToken.StartObject then
+            ProcessStockRead(stocks, jtr);
+        end;
+      finally
+        jtr.Free;
+      end;
+    finally
+      sr.Free;
+    end;
+
+    DisplayStocks(stocks);
+  finally
+    stocks.Free;
+  end;
+end;
+
+end.

@@ -1,0 +1,61 @@
+object f_Main: Tf_Main
+  Left = 0
+  Top = 0
+  Caption = 'f_Main'
+  ClientHeight = 231
+  ClientWidth = 504
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Button1: TButton
+    Left = 39
+    Top = 64
+    Width = 154
+    Height = 25
+    Caption = 'Save to File'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Memo1: TMemo
+    Left = 216
+    Top = 18
+    Width = 185
+    Height = 89
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 39
+    Top = 95
+    Width = 154
+    Height = 25
+    Caption = 'Load File Content (Memo1)'
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 39
+    Top = 126
+    Width = 154
+    Height = 25
+    Caption = 'Load Params (Memo2)'
+    TabOrder = 3
+    OnClick = Button3Click
+  end
+  object Memo2: TMemo
+    Left = 216
+    Top = 113
+    Width = 185
+    Height = 89
+    Lines.Strings = (
+      'Memo2')
+    TabOrder = 4
+  end
+end

@@ -1,0 +1,30 @@
+unit c_Reader;
+
+interface uses System.SysUtils, System.Variants, System.Classes, System.JSON, System.JSON.Types, System.JSON.Readers, Data.DBXJSON, System.IOUtils, uCustomTypes;
+
+type
+  TReader = Class
+    private
+
+    protected
+
+    public
+      function Read: string;
+  End;
+
+implementation
+
+uses  JSON.Writers, JSON.Builders, REST.JSON, JsonUtils;
+
+//==============================================================================
+function TReader.Read: string;
+var
+JSonRead: TStringList;
+begin
+  JSonRead := TStringList.Create;
+  JSonRead.LoadFromFile('D:\Pobrane\example_1.json');
+  Result := JSonRead.Text;
+end;
+
+
+end.

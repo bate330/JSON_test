@@ -1,0 +1,39 @@
+unit c_Saver;
+
+interface  uses System.SysUtils, System.Variants, System.Classes, System.JSON, System.JSON.Types, System.JSON.Readers, Data.DBXJSON, System.IOUtils, uCustomTypes;
+
+type
+  TSaver = Class
+    private
+      function Save: string;
+    protected
+
+    public
+
+  End;
+
+implementation
+
+uses  JSON.Writers, JSON.Builders, REST.JSON, JsonUtils;
+
+function TSaver.Save: string;
+var
+Stock: TStock;
+JSonFile: TStringlist;
+begin
+   Stock:= Stock.Create;
+   Stock.fruit := 'lemon';
+   Stock.size := 'small';
+   Stock.color := 'yellow';
+   JSonFile:= TStringlist.Create;
+try
+  JsonFile.Add(TJson.ObjectToJsonString(Stock));
+  JSonFile.SaveToFile('D:\Pobrane\example_1.json');
+finally
+  Stock.Free;
+end;
+
+end;
+
+
+end.
