@@ -21,7 +21,7 @@ function TSaver.Save(Stock: TStock): string;
 var
 JSonFile: TStringlist;
 begin
-   JSonFile:= TStringlist.Create;
+  JSonFile:= TStringlist.Create;
 try
   JsonFile.Add(TJson.ObjectToJsonString(Stock));
   JSonFile.SaveToFile(MainForm.SourceEdit.Text);

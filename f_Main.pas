@@ -40,8 +40,7 @@ begin
   Saver := TSaver.Create;
   Reader := TReaderC.Create;
   Memo3.Lines[0] := '1 - Fruit Name..';
-  Memo3.Lines[1] := '2 - Fruit Size..';
-  Memo3.Lines[2] := '3 - Fruit Color..';
+  Memo3.Lines[1] := '2 - Fruit Size..' + #13#10 + '3 - Fruit Color..';
 end;
 
 //==============================================================================

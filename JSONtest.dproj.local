@@ -3,19 +3,20 @@
 	<Transactions>
     <Transaction>1899/12/30 00:00:00.000.873,=D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2020/07/28 11:18:04.000.801,=D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2020/07/28 12:37:24.000.145,D:\Moje dokumenty\Embarcadero\Studio\Projects\Project4.dproj=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON.dproj</Transaction>
-    <Transaction>2020/07/28 12:37:42.000.326,D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.dfm=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.dfm</Transaction>
-    <Transaction>2020/07/28 12:37:42.000.326,D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.pas</Transaction>
-    <Transaction>2020/07/28 12:44:08.000.317,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON.dproj=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSONtest.dproj</Transaction>
-    <Transaction>2020/07/29 12:25:30.604,=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
-    <Transaction>2020/07/29 12:26:38.764,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\f_Main.dfm=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.dfm</Transaction>
-    <Transaction>2020/07/29 12:26:38.764,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\f_Main.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.pas</Transaction>
-    <Transaction>2020/07/29 12:26:49.638,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Reader.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
-    <Transaction>2020/07/29 12:27:42.689,=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
-    <Transaction>2020/07/29 12:27:51.179,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Saver.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
-    <Transaction>2020/07/29 12:28:00.506,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\c_Reader.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Reader.pas</Transaction>
-    <Transaction>2020/07/29 12:28:06.137,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\c_Saver.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Saver.pas</Transaction>
-  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <Transaction>2020/07/28 12:37:24.000.145,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON.dproj=D:\Moje dokumenty\Embarcadero\Studio\Projects\Project4.dproj</Transaction>
+    <Transaction>2020/07/28 12:37:42.000.326,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/07/28 12:37:42.000.326,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.dfm=D:\Moje dokumenty\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2020/07/28 12:44:08.000.317,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSONtest.dproj=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON.dproj</Transaction>
+    <Transaction>2020/07/29 12:25:30.000.604,=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
+    <Transaction>2020/07/29 12:26:38.000.764,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\f_Main.pas</Transaction>
+    <Transaction>2020/07/29 12:26:38.000.764,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\JSON.dfm=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\f_Main.dfm</Transaction>
+    <Transaction>2020/07/29 12:26:49.000.638,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Reader.pas</Transaction>
+    <Transaction>2020/07/29 12:27:42.000.689,=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas</Transaction>
+    <Transaction>2020/07/29 12:27:51.000.179,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Unit1.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Saver.pas</Transaction>
+    <Transaction>2020/07/29 12:28:00.000.506,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Reader.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\c_Reader.pas</Transaction>
+    <Transaction>2020/07/29 12:28:06.000.137,D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\Saver.pas=D:\Moje dokumenty\Embarcadero\Studio\Projects\JSON_test\c_Saver.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="c_Reader.pas"/>
     <File Path="f_Main.pas"/>
     <File Path="f_Main.dfm"/>
